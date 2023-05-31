@@ -1,5 +1,6 @@
+import Card from 'components/Card';
 function App() {
-  return <div>hELLO</div>;
+  return <Card />;
 }
 
 export default App;
