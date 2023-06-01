@@ -1,6 +1,6 @@
-import Card from 'components/Card';
+import TweetsLibrary from 'components/TweetsLibrary';
 function App() {
-  return <Card />;
+  return <TweetsLibrary />;
 }
 
 export default App;
