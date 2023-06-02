@@ -9,8 +9,13 @@ export const api = createApi({
   }),
   tagTypes: ['tweets'],
   endpoints: builder => ({
+    getTweetsAmout: builder.query({
+      query: () => `/tweets`,
+      transformResponse: response => response.length,
+      providesTags: ['tweets'],
+    }),
     getTweets: builder.query({
-      query: () => '/tweets',
+      query: page => `/tweets/?&limit=3&page=${page}`,
       providesTags: ['tweets'],
     }),
     addFollow: builder.mutation({
@@ -28,4 +33,8 @@ export const api = createApi({
   }),
 });
 
-export const { useGetTweetsQuery, useAddFollowMutation } = api;
+export const {
+  useGetTweetsQuery,
+  useGetTweetsAmoutQuery,
+  useAddFollowMutation,
+} = api;

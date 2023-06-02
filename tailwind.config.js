@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        primary: '#471CA9',
         text: '#EBD8FF',
         textSecondary: '#373737',
         buttonBg: '#EBD8FF',

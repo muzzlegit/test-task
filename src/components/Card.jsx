@@ -42,7 +42,10 @@ const Card = ({ tweet }) => {
   };
 
   return (
-    <article className="relative mx-auto my-10 w-[380px] h-[460px] shadow-cardShadow bg-articleBg rounded-[20px]">
+    <article
+      className="relative w-[380px] h-[460px] shadow-cardShadow bg-articleBg rounded-[20px]"
+      id={id}
+    >
       <div className=" relative h-[178px]">
         <a
           className="inline-block pl-[20px] pt-[20px]"
@@ -71,7 +74,6 @@ const Card = ({ tweet }) => {
         </p>
         <button
           id={id}
-          c
           className={`w-[196px] h-[50px] px-[28px] py-[14px] ${
             isFolowing ? 'bg-activeButtonBg' : 'bg-buttonBg'
           } rounded-[10px] shadow-buttonShadow cursor-pointer text-textSecondary font-semibold text-[18px]/[22px] uppercase`}
