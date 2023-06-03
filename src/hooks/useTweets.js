@@ -2,16 +2,20 @@ import { useState, useMemo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getFollowList } from 'state/userSlice';
 import { useGetTweetsQuery, useGetTweetsAmoutQuery } from 'state/api';
-
+import { errorToast } from 'utils/toasts';
 const useTweets = filter => {
   const [tweets, setTweets] = useState([]);
   const [page, setPage] = useState(1);
   const [firstTweetId, setfirstTweetId] = useState(null);
   const followingList = useSelector(getFollowList);
+
   const { data: tweetsAmount } = useGetTweetsAmoutQuery();
-  const { data } = useGetTweetsQuery(page);
+  const { data, isLoading, isError } = useGetTweetsQuery(page);
+
+  if (isError) errorToast();
 
   useEffect(() => {
+    if (isError || !data?.length) return;
     if (data) {
       setfirstTweetId(data[0].id);
       setTweets(prev => {
@@ -23,7 +27,7 @@ const useTweets = filter => {
         return newTweets;
       });
     }
-  }, [data]);
+  }, [data, isError]);
 
   useEffect(() => {
     document.getElementById(firstTweetId)?.scrollIntoView({
@@ -55,6 +59,8 @@ const useTweets = filter => {
     tweetsAmount,
     isAllLoad: tweets.length >= tweetsAmount,
     getNextTweets,
+    isLoading,
+    isError,
   };
 };
 

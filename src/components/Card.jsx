@@ -7,13 +7,14 @@ import { useDispatch } from 'react-redux/es/exports';
 import { useSelector } from 'react-redux/es/exports';
 import { useAddFollowMutation } from 'state/api';
 import { addUser, removeUser, getFollowList } from 'state/userSlice';
+import { addFollowig, removeFollowing, errorToast } from 'utils/toasts';
 
 const Card = ({ tweet }) => {
   const { id, tweets, followers, avatar, user } = tweet;
   const followList = useSelector(getFollowList);
   const dispatch = useDispatch();
   const [addFollow] = useAddFollowMutation();
-  const [isFolowing, setIsFolowing] = useState(followList.includes(id));
+  const [isFollowing, setIsFolowing] = useState(followList.includes(id));
 
   const onButtonClick = async e => {
     const id = e.target.id;
@@ -21,22 +22,25 @@ const Card = ({ tweet }) => {
       const { data, error } = await addFollow({
         id,
         followers: {
-          followers: isFolowing ? followers - 1 : followers + 1,
+          followers: isFollowing ? followers - 1 : followers + 1,
         },
       });
       if (data) {
-        if (isFolowing) {
+        if (isFollowing) {
           dispatch(removeUser(id));
           setIsFolowing(false);
+          removeFollowing(user);
         } else {
           dispatch(addUser(id));
           setIsFolowing(true);
+          addFollowig(user);
         }
       }
       if (error) {
         throw error;
       }
     } catch (error) {
+      errorToast();
       console.log(error.data);
     }
   };
@@ -67,20 +71,20 @@ const Card = ({ tweet }) => {
       </div>
       <div className="text-center">
         <p className="mb-[16px] text-text font-medium text-[20px]/[24px] uppercase">
-          {tweets} tweets
+          {tweets.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} tweets
         </p>
         <p className="mb-[26px] text-text font-medium text-[20px]/[24px] uppercase">
-          {followers} followers
+          {followers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} followers
         </p>
         <button
           id={id}
           className={`w-[196px] h-[50px] px-[28px] py-[14px] ${
-            isFolowing ? 'bg-activeButtonBg' : 'bg-buttonBg'
+            isFollowing ? 'bg-activeButtonBg' : 'bg-buttonBg'
           } rounded-[10px] shadow-buttonShadow cursor-pointer text-textSecondary font-semibold text-[18px]/[22px] uppercase`}
           type="button"
           onClick={onButtonClick}
         >
-          {isFolowing ? 'following' : 'Follow'}
+          {isFollowing ? 'following' : 'Follow'}
         </button>
       </div>
     </article>

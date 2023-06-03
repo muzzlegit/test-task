@@ -2,25 +2,22 @@ import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <nav className="h-[60px]">
-      <div className="h-full flex justify-center items-center gap-[20px] border-b-2">
+    <nav className="h-[44px]">
+      <div className="h-full flex justify-center items-center gap-[20px] border-b-2 border-border">
         <NavLink
           to="/"
           style={({ isActive }) => {
             return {
-              // boxSizing: 'border-box',
-              // width: '100%',
-              // padding: '4px 10px 8px 10px',
-              // fontSize: '30px',
-              // fontWeight: 'bold',
-              // textDecoration: 'none',
-              // color: isActive ? theme.colors.acent : theme.colors.grey,
-              // borderRadius: isActive ? '10px' : 'none',
-              // boxShadow: isActive ? theme.shadows.submitButtonShadow : 'none',
+              boxSizing: 'border-box',
+              padding: '4px 10px 8px 10px',
+              fontSize: '20px',
+              textDecoration: 'none',
+              color: isActive ? '#7ebbd7' : '#373737',
+              borderRadius: isActive ? '10px' : 'none',
             };
           }}
         >
-          <span>Home</span>
+          <span>HOME</span>
         </NavLink>
 
         <>
@@ -28,15 +25,12 @@ const NavBar = () => {
             to="/tweets"
             style={({ isActive }) => {
               return {
-                // boxSizing: 'border-box',
-                // width: '100%',
-                // padding: '4px 10px 8px 10px',
-                // fontSize: '30px',
-                // fontWeight: 'bold',
-                // textDecoration: 'none',
-                // color: isActive ? theme.colors.acent : theme.colors.grey,
-                // borderRadius: isActive ? '10px' : 'none',
-                // boxShadow: isActive ? theme.shadows.submitButtonShadow : 'none',
+                boxSizing: 'border-box',
+                padding: '4px 10px 8px 10px',
+                fontSize: '20px',
+                textDecoration: 'none',
+                color: isActive ? '#7ebbd7' : '#373737',
+                borderRadius: isActive ? '10px' : 'none',
               };
             }}
           >
