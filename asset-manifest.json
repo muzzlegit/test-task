@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/muzzlegit/test-task/static/css/main.61f2ed7f.css",
+    "main.js": "/muzzlegit/test-task/static/js/main.487d3ed9.js",
+    "static/media/User.svg": "/muzzlegit/test-task/static/media/User.9545d48205a43e204e631ba2b99ad9ff.svg",
+    "static/media/picture.svg": "/muzzlegit/test-task/static/media/picture.23dcbc3cc8ccc9682f24b4acffb5efb2.svg",
+    "static/media/logo.svg": "/muzzlegit/test-task/static/media/logo.e917114d7945c04c85a8946a331d28b6.svg",
+    "index.html": "/muzzlegit/test-task/index.html",
+    "static/media/frame.svg": "/muzzlegit/test-task/static/media/frame.514d56b979808b8b27f05f186755d6c7.svg",
+    "static/media/line.svg": "/muzzlegit/test-task/static/media/line.c94fa956ae238ba295173ed09ddba7bf.svg",
+    "main.61f2ed7f.css.map": "/muzzlegit/test-task/static/css/main.61f2ed7f.css.map",
+    "main.487d3ed9.js.map": "/muzzlegit/test-task/static/js/main.487d3ed9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.61f2ed7f.css",
+    "static/js/main.487d3ed9.js"
+  ]
+}
