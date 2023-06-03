@@ -1,47 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Card from './Card';
-import { useGetTweetsQuery, useGetTweetsAmoutQuery } from 'state/api';
+import Filter from './Filter';
+import useTweets from 'hooks/useTweets';
 
 const TweetsLibrary = () => {
-  const [tweets, setTweets] = useState([]);
-  const [page, setPage] = useState(1);
-  const [firstTweetId, setfirstTweetId] = useState(null);
-  const { data: tweetsAmount } = useGetTweetsAmoutQuery();
-  const { data } = useGetTweetsQuery(page);
-
-  useEffect(() => {
-    if (data) {
-      setfirstTweetId(data[0].id);
-      setTweets(prev =>
-        prev[0]?.id === data[0].id ? prev : [...prev, ...data]
-      );
-    }
-  }, [data]);
-
-  useEffect(() => {
-    document.getElementById(firstTweetId)?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
-  }, [firstTweetId]);
-
-  const onLoadmoreClick = () => {
-    if (tweets.length >= tweetsAmount) return;
-    setPage(prev => prev + 1);
-  };
+  const [filter, setFilter] = useState('all');
+  const { tweets, filteredTweets, tweetsAmount, getNextTweets, isAllLoad } =
+    useTweets(filter);
 
   return (
     <section className="mt-[20px] ">
       <div className="mx-auto w-[1280px]">
+        <Filter filter={filter} setFilter={setFilter} />
         <div className="mr-auto">{`${tweets?.length}/${tweetsAmount}`}</div>
         <div className=" h-[464px] overflow-y-auto pr-1 flex flex-wrap justify-center gap-[20px]">
-          {tweets?.map(tweet => (
+          {filteredTweets?.map(tweet => (
             <Card key={tweet.id} tweet={tweet} />
           ))}
         </div>
 
-        <button type="button" onClick={onLoadmoreClick}>
-          Shov More
+        <button type="button" onClick={getNextTweets} disabled={isAllLoad}>
+          Show More
         </button>
       </div>
     </section>

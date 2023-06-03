@@ -80,7 +80,7 @@ const Card = ({ tweet }) => {
           type="button"
           onClick={onButtonClick}
         >
-          Follow
+          {isFolowing ? 'following' : 'Follow'}
         </button>
       </div>
     </article>
